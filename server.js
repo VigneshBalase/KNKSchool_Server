@@ -1,24 +1,37 @@
-// server.js
-
 const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const excelDataRouter = require('./routes/Studentdatas');
-
 const app = express();
-const port = 8001;
+const cors = require('cors');
+const mongoose = require('mongoose');
 
-app.use(bodyParser.json());
+require("dotenv").config();
 
-// Connect to MongoDB
-mongoose
-  .connect('mongodb+srv://dbadmin:knk2121@cluster0.aifbbb9.mongodb.net/?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((error) => console.error('Error connecting to MongoDB:', error));
+var bodyParser = require('body-parser')
 
-app.use('/api/excel-data', excelDataRouter);
+app.use(cors());
+// const { count } = require('./models/Users');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+
+
+
+mongoose.connect(
+    "mongodb+srv://dbadmin:knk2121@cluster0.aifbbb9.mongodb.net/?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
+
+
+
+app.get("/hello", async (req,res) => {
+
+    
+  res.send("sample hello");
+
+  
+})
+
+let port = process.env.PORT || 8001;
+
+app.listen(port, () => {
+  console.log("App is running on port " + port);
+});
