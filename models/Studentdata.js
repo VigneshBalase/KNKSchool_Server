@@ -1,18 +1,38 @@
-// models/ExcelData.js
-
 const mongoose = require('mongoose');
 
-// Create a schema for the Excel data
-const excelDataSchema = new mongoose.Schema({
-  ADMISSION_NUMBER: { type: String },
-  Student_Name: { type: String },
-  Father_Name: { type: String },
-  Mother_name: { type: String },
-  Date_of_Birth: { type: String },
-  Mobile_No: { type: String },
+// Create a schema for the student data
+const studentSchema = new mongoose.Schema({
+  CLASS_NUMBER: {
+    type: String,
+    required: true,
+},
+
+  ADMISSION_NUMBER: { 
+    type: String, 
+    required: true 
+  },
+  Student_Name:{
+     type: String, 
+     required: true 
+    },
+  Father_Name: { 
+    type: String, 
+    required: true 
+  },
+  Mother_name: { 
+    type: String,  
+  },
+  Date_of_Birth: { 
+    type: String, 
+    required: true 
+  },
+  Mobile_No: { 
+    type: String, 
+    required: true 
+  },
 });
 
 // Create a model based on the schema
-const ExcelData = mongoose.model('ExcelData', excelDataSchema);
+const ClassDataModel  = mongoose.model('classdata', studentSchema);
 
-module.exports = ExcelData;
+module.exports = ClassDataModel ;
