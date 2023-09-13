@@ -30,6 +30,10 @@ const studentSchema = new mongoose.Schema({
     type: String, 
     required: true 
   },
+  Email_id: {
+    type: String,
+    required: true
+  },
 });
 
 // Create a model based on the schema
